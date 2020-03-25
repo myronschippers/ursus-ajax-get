@@ -28,6 +28,7 @@ function getQuotes() {
 function render() {
   // appending my list to the DOM
 
+  $('.js-quotes').empty();
   for (let i = 0; i < allQuotes.length; i++) {
     const quoteObject = allQuotes[i];
     console.log(quoteObject);
