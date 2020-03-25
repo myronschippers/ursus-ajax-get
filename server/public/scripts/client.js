@@ -1,12 +1,14 @@
 $(document).ready(init);
 
 let allQuotes = [];
-let randoQuote = '';
+let randoQuote = {};
+// let randoQuote = ''; // what the data typ is
+// let randoQuote = 0;
 
 function init() {
   console.log('DOM is totes ready!!!');
   $('.js-btn-rando-quote').on('click', clickGetQuote);
-  
+
   getQuotes();
 }
 
@@ -21,9 +23,9 @@ function getRandomQuote() {
     method: 'GET',
     url: '/quote',
   })
-  .then((response) => {
-    console.log(response);
-    randoQuote = response;
+  .then((randomQuote) => {
+    console.log(randomQuote);
+    randoQuote = randomQuote;
 
     render();
   }) // handles a successful response
@@ -62,6 +64,16 @@ function render() {
         <p class="stackedQuote-quote">${quoteObject.quote}</p>
         <em class="stackedQuote-author">by - ${quoteObject.author}</em>
       </div>
+    `);
+  }
+
+  if (randoQuote.quote != null && randoQuote.author != null) {
+    $('.js-rando-quote').empty();
+    $('.js-rando-quote').append(`
+        <div class="stackedQuote">
+          <p class="stackedQuote-quote">${randoQuote.quote}</p>
+          <em class="stackedQuote-author">by - ${randoQuote.author}</em>
+        </div>
     `);
   }
 }
