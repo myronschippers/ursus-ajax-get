@@ -23,9 +23,9 @@ function getRandomQuote() {
     method: 'GET',
     url: '/quote',
   })
-  .then((randomQuote) => {
-    console.log(randomQuote);
-    randoQuote = randomQuote;
+  .then((response) => {
+    console.log(response);
+    randoQuote = response;
 
     render();
   }) // handles a successful response
