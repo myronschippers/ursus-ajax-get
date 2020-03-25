@@ -1,6 +1,7 @@
 $(document).ready(init);
 
 let allQuotes = [];
+let randoQuote = '';
 
 function init() {
   console.log('DOM is totes ready!!!');
@@ -11,6 +12,24 @@ function init() {
 
 function clickGetQuote(event) {
   console.log('CLICKED!!!');
+  // get random quote from server
+  getRandomQuote();
+}
+
+function getRandomQuote() {
+  $.ajax({// .ajax() returns a Promise
+    method: 'GET',
+    url: '/quote',
+  })
+  .then((response) => {
+    console.log(response);
+    randoQuote = response;
+
+    render();
+  }) // handles a successful response
+  .catch((err) => {
+    console.log(err);
+  }); // catch handles errors
 }
 
 function getQuotes() {
@@ -36,7 +55,7 @@ function render() {
   $('.js-quotes').empty();
   for (let i = 0; i < allQuotes.length; i++) {
     const quoteObject = allQuotes[i];
-    console.log(quoteObject);
+    // console.log(quoteObject);
 
     $('.js-quotes').append(`
       <div class="stackedQuote">
