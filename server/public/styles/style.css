@@ -1,0 +1,18 @@
+.stackedQuote {
+  display: block;
+  padding: 15px 0;
+}
+
+.stackedQuote + .stackedQuote {
+  border-top: 1px solid #b9b9b9;
+}
+
+.stackedQuote-quote {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.stackedQuote-author {
+  font-size: 0.9rem;
+  font-style: italic;
+}
