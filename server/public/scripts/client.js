@@ -4,8 +4,13 @@ let allQuotes = [];
 
 function init() {
   console.log('DOM is totes ready!!!');
+  $('.js-btn-rando-quote').on('click', clickGetQuote);
   
   getQuotes();
+}
+
+function clickGetQuote(event) {
+  console.log('CLICKED!!!');
 }
 
 function getQuotes() {
