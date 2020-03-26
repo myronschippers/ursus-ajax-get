@@ -1,11 +1,14 @@
 console.log('I am a Server');
 const express = require('express');
+const bodyParser = require('body-parser');
 const quotes = require('./modules/quotes');
 const randomNumber = require('./modules/randomNumber');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static('server/public'));
 
 // LOKING FOR
@@ -32,6 +35,20 @@ app.get('/quote', (req, res) => {
   const randoQuote = quotes[randomIndex];
 
   res.send(randoQuote);
+});
+
+// SAVING DATA
+app.post('/quote', (req, res) => {
+  console.log('req:', req);
+  const newQuote = req.body;
+  // {
+  //   quote: '',
+  //   author: '',
+  // }
+
+  quotes.push(newQuote);
+
+  res.sendStatus(201);
 });
 
 //
