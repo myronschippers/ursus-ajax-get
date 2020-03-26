@@ -7,8 +7,10 @@ const randomNumber = require('./modules/randomNumber');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// configuration to tuck sent data onto req.body
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 app.use(express.static('server/public'));
 
 // LOKING FOR
@@ -40,7 +42,7 @@ app.get('/quote', (req, res) => {
 // SAVING DATA
 app.post('/quote', (req, res) => {
   console.log('req:', req);
-  const newQuote = req.body;
+  const newQuote = req.body; // from ajax the body is the data key
   // {
   //   quote: '',
   //   author: '',
