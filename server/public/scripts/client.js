@@ -8,8 +8,23 @@ let randoQuote = {};
 function init() {
   console.log('DOM is totes ready!!!');
   $('.js-btn-rando-quote').on('click', clickGetQuote);
+  $('.js-new-quote-form').on('submit', submitQuote);
 
   getQuotes();
+}
+
+//
+// EVENT HANDLERS
+// ----------
+
+function submitQuote(event) {
+  event.preventDefault();
+  const newQuote = {
+    quote: $('.js-input-quote').val(),
+    author: $('.js-input-author').val(),
+  };
+
+  console.log(newQuote);
 }
 
 function clickGetQuote(event) {
