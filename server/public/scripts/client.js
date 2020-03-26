@@ -25,12 +25,33 @@ function submitQuote(event) {
   };
 
   console.log(newQuote);
+  // passing newQuote to saveQuote function
+  saveQuote(newQuote);
 }
 
 function clickGetQuote(event) {
   console.log('CLICKED!!!');
   // get random quote from server
   getRandomQuote();
+}
+
+//
+// API INTERACTIONS
+// ----------
+
+function saveQuote(quoteData) {
+  $.ajax({// .ajax() returns a Promise
+    method: 'POST',
+    url: '/quote',
+    data: quoteData
+  })
+  .then((response) => {
+    console.log(response);
+    getQuotes();
+  }) // handles a successful response
+  .catch((err) => {
+    console.log(err);
+  }); // catch handles errors
 }
 
 function getRandomQuote() {
@@ -65,6 +86,10 @@ function getQuotes() {
     console.log(err);
   }); // catch handles errors
 }
+
+//
+// RENDERING TO DOM
+// ----------
 
 function render() {
   // appending my list to the DOM
